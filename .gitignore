@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Streamlit generated files
+.streamlit/
+
+# Ignore data (optional if you don't want to push dummy data)
+data/*.json
+data/*.csv
+
+# IDE-specific
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db

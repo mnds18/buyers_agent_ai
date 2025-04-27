@@ -2,6 +2,7 @@
 
 import json
 import os
+import random  # 🔥 REQUIRED for fallback random sampling
 
 # Try importing Domain API searcher
 try:
@@ -22,12 +23,19 @@ def source_properties(location, budget):
     if USE_DUMMY_DATA:
         print("🟢 Using Dummy Property Data")
         all_properties = load_dummy_properties()
+
+        # Try to match properties by location AND budget
         filtered = [
             p for p in all_properties
             if location.lower() in p["address"].lower()
             and p["price"] <= budget
         ]
-        return filtered[:10]  # Return top 10 matches
+
+        if not filtered:
+            print(f"⚠️ No direct property matches for {location}. Falling back to random 10 properties.")
+            filtered = random.sample(all_properties, 10)
+
+        return filtered[:10]  # Return up to 10 properties
     else:
         print("🔴 Using Live Domain API Data")
         if domain_search_properties:
